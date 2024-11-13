@@ -51,5 +51,16 @@ function viewEntry(index) {
         <h2>${entry.date}</h2>
         <p>${entry.text}</p>
         <button onclick="showEntries()">Back to Entries</button>
+        <button onclick="deleteEntry(${index})">Delete Entry</button>
     `;
+}
+
+function deleteEntry(index) {
+    if (confirm("Are you sure you want to delete this entry?")) {
+        const entries = JSON.parse(localStorage.getItem('diaryEntries'));
+        entries.splice(index, 1);
+        localStorage.setItem('diaryEntries', JSON.stringify(entries));
+        alert('Entry deleted!');
+        showEntries();
+    }
 }
